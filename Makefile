@@ -29,3 +29,12 @@ _golangci-lint-rm-unformatted-report: _golangci-lint-format-report
 .PHONY: golangci-lint-clean
 golangci-lint-clean:
 	sudo rm -rf ./golangci-lint 
+
+.PHONY: test-all
+test-all:
+	go test ./... -v -count=1 -p=1 -tags="integration_tests"
+
+.PHONY: test
+test:
+	go test ./... -v
+

@@ -1,31 +1,27 @@
-package gophermart
+package server
 
 import (
 	"context"
 	"errors"
 	"net/http"
-	"os"
-	"os/signal"
+
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/config"
 )
 
-func Start() {
-	config := GetConfig()
-
+func Start(ctx context.Context) {
 	// настройка роутов
 	r := NewRouter()
 
 	// Создаем сервер и запускаем его
 	var server *http.Server
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
 	go func() {
-		<-c
+		<-ctx.Done()
 		err := server.Shutdown(context.Background())
 		if err != nil {
 			panic(err)
 		}
 	}()
-	server = &http.Server{Addr: config.SelfAddress, Handler: r}
+	server = &http.Server{Addr: config.AppConfig.SelfAddress, Handler: r}
 	err := server.ListenAndServe()
 	if err != nil && !errors.Is(err, http.ErrServerClosed) {
 		panic(err)

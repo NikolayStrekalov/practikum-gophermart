@@ -9,9 +9,38 @@
 
       lefthook install
 
+1. Запустить базу и accrual сервис:
+
+      docker compose up -d
+
 1. Запустить сервер:
 
       cd cmd/gophermart && go run main.go
+
+## Запуск юнит тестов
+
+      make test
+
+## Запуск всех тестов
+
+      make test-all
+
+## Создание файлов миграции
+
+      docker run --rm \
+            -v $(realpath ./internal/db/migrations):/migrations \
+            migrate/migrate:v4.16.2 \
+                  create \
+                  -dir /migrations \
+                  -ext .sql \
+                  <migration_name>
+
+## Откат миграции
+
+      docker run --rm --network host -v $(realpath ./internal/db/migrations):/migrations \
+            migrate/migrate:v4.16.2 -path=/migrations/ \
+            -database  "postgres://gophermart:gophermart@localhost:5432/gophermart?sslmode=disable" \
+            down -all
 
 # Обновление шаблона
 
