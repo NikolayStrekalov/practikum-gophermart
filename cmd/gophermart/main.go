@@ -13,6 +13,7 @@ import (
 func main() {
 	config.InitConfig()
 	err := db.InitDB(config.AppConfig.Database)
+	defer db.Close()
 	if err != nil {
 		panic(err)
 	}

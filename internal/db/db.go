@@ -12,23 +12,17 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type DB struct {
-	pool *pgxpool.Pool
-}
-
-var AppDB *DB
+var pool *pgxpool.Pool
 
 func InitDB(dsn string) error {
 	if err := runMigrations(dsn); err != nil {
 		return fmt.Errorf("failed to run DB migrations: %w", err)
 	}
-	pool, err := pgxpool.New(context.Background(), dsn)
+	p, err := pgxpool.New(context.Background(), dsn)
 	if err != nil {
 		return fmt.Errorf("failed to create a connection pool: %w", err)
 	}
-	AppDB = &DB{
-		pool: pool,
-	}
+	pool = p
 	return nil
 }
 
@@ -52,6 +46,10 @@ func runMigrations(dsn string) error {
 	}
 	return nil
 }
-func (db *DB) Close() {
-	db.pool.Close()
+func Close() {
+	pool.Close()
+}
+
+func SaveUser(login string, password string) {
+
 }

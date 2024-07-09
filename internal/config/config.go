@@ -20,7 +20,6 @@ func (c Config) String() string {
 var AppConfig Config
 
 func InitConfig() {
-
 	conf := Config{}
 	envAddress := os.Getenv("RUN_ADDRESS")
 	if envAddress == "" {
