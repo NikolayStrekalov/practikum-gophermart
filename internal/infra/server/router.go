@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/server/handlers"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/server/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )

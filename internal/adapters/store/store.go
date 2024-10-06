@@ -1,7 +1,7 @@
 package store
 
 import (
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/db"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/db"
 	"github.com/NikolayStrekalov/practicum-gophermart/internal/models"
 )
 

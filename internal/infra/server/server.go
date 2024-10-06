@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/config"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/config"
 )
 
 func Start(ctx context.Context) {

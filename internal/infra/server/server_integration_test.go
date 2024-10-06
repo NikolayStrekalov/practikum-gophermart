@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/config"
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/db"
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/testfun"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/config"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/db"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/testfun"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
@@ -24,7 +24,7 @@ type AppTestSuite struct {
 }
 
 func (suite *AppTestSuite) SetupSuite() {
-	os.Setenv("RUN_ADDRESS", "localhost:8081")
+	os.Setenv("RUN_ADDRESS", "localhost:8085")
 	ctx, cancel := context.WithCancel(context.Background())
 	dsn, err := testfun.CreateTestDB(ctx)
 	if err != nil {
@@ -45,7 +45,7 @@ func (suite *AppTestSuite) SetupSuite() {
 
 func (suite *AppTestSuite) TestRegistration() {
 	t := suite.T()
-	resp, err := http.Post("http://localhost:8081/api/user/register", "application/json", bytes.NewBuffer([]byte(`{"login": "sdf","password":"qwer"}`)))
+	resp, err := http.Post("http://localhost:8085/api/user/register", "application/json", bytes.NewBuffer([]byte(`{"login": "sdf","password":"qwer"}`)))
 	assert.Nil(t, err)
 	assert.Equal(t, resp.StatusCode, 200)
 	assert.NotEmpty(t, resp.Header.Get("Authorization"))

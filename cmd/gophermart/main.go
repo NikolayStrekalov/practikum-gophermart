@@ -5,9 +5,9 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/config"
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/db"
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/server"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/config"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/db"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/infra/server"
 )
 
 func main() {

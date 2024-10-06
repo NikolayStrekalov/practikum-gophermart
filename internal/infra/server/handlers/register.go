@@ -4,9 +4,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/auth"
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/serializers"
-	"github.com/NikolayStrekalov/practicum-gophermart/internal/store"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/adapters/auth"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/adapters/serializers"
+	"github.com/NikolayStrekalov/practicum-gophermart/internal/adapters/store"
 )
 
 var Register http.HandlerFunc = func(res http.ResponseWriter, req *http.Request) {
